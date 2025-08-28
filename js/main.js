@@ -14,8 +14,22 @@ import { setupMultiplayer } from './multiplayer.js';
 import { dealDamage } from './enemy.js';
 import { saveSlotCloud, loadSlotCloud, loadLatestCloud } from './cloud-saves.js';
 
-// Create a WebsimSocket that will be exported to other modules
-export const room = new WebsimSocket();
+
+const socket = new WebsimSocket("https://my-websim-socket.onrender.com");
+
+socket.onopen = () => {
+  console.log("Connected via WebsimSocket!");
+  socket.send("Hello from client!");
+};
+
+socket.onmessage = (event) => {
+  console.log("Message from server:", event.data);
+};
+
+socket.onclose = () => {
+  console.log("Disconnected");
+};
+
 
 // DOM elements
 export const elements = {
