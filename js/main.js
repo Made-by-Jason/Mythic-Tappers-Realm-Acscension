@@ -15,19 +15,23 @@ import { dealDamage } from './enemy.js';
 import { saveSlotCloud, loadSlotCloud, loadLatestCloud } from './cloud-saves.js';
 
 
-const socket = new WebsimSocket("https://my-websim-socket.onrender.com");
+const socket = new WebsimSocket("wss://my-websocket-server.onrender.com");
 
 socket.onopen = () => {
-  console.log("Connected via WebsimSocket!");
+  console.log("✅ Connected to WebSocket server");
   socket.send("Hello from client!");
 };
 
 socket.onmessage = (event) => {
-  console.log("Message from server:", event.data);
+  console.log("📩 Message from server:", event.data);
+};
+
+socket.onerror = (error) => {
+  console.error("❌ WebSocket error:", error);
 };
 
 socket.onclose = () => {
-  console.log("Disconnected");
+  console.warn("⚠️ Disconnected from server");
 };
 
 
