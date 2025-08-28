@@ -1,0 +1,254 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mythic Tappers: Realm Ascension</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Game Header -->
+        <div id="game-header">
+            <h1 class="header-title">MYTHIC TAPPERS</h1>
+            <h2 class="header-subtitle">REALM ASCENSION</h2>
+        </div>
+        
+        <!-- Realm Progress -->
+        <div class="realm-progress">
+            <div class="realm-number">1</div>
+            <div class="realm-season" id="realm-season">Spring</div>
+        </div>
+        
+        <!-- Multiplayer List -->
+        <div class="multiplayer-list" id="players-list">
+            <!-- Players will be populated here -->
+        </div>
+        
+        <div id="enemy-display">
+            <div id="enemy-level">Level 1</div>
+            <div id="enemy-health">
+                <div id="enemy-health-bar"></div>
+            </div>
+            <div id="enemy">
+                <img src="/a/20a579b8-e81e-4468-a93d-46f4ebca641e" alt="Enemy" class="enemy-image">
+            </div>
+            <div id="tap-zone"></div>
+            <div id="loot-notification">Legendary Item Found!</div>
+        </div>
+        
+        <!-- Player Stats -->
+        <div id="player-stats" class="fancy-card">
+            <div class="stat-card">
+                <span>Gold</span>
+                <strong id="gold-display">0</strong>
+            </div>
+            <div class="stat-card">
+                <span>DPS</span>
+                <strong id="dps-display">0</strong>
+            </div>
+            <div class="stat-card">
+                <span>TPS</span>
+                <strong id="tps-display">0</strong>
+            </div>
+            <div class="stat-card">
+                <span>Wave</span>
+                <strong id="wave-display">1</strong>
+            </div>
+            <div class="stat-card">
+                <span>Level</span>
+                <strong id="level-display">1</strong>
+            </div>
+            <div class="stat-card">
+                <span>Prestige</span>
+                <strong id="prestige-count">0</strong>
+            </div>
+            <div class="stat-card">
+                <span>Prestige Pts</span>
+                <strong id="prestige-points">0</strong>
+            </div>
+        </div>
+        
+        <!-- Skills Container -->
+        <div id="skills-container" class="fancy-card">
+            <div class="skill" id="skill-1">
+                <svg class="skill-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12,1L3,5v6c0,5.55,3.84,10.74,9,12c5.16-1.26,9-6.45,9-12V5L12,1z" fill="#ff5252" />
+                    <path d="M12,3.8L5,6.9V11c0,3.7,2.6,7.1,7,8.1c4.4-1,7-4.4,7-8.1V6.9L12,3.8z" fill="#ff8a8a" />
+                    <path d="M13,17h-2v-6h2V17z M13,9h-2V7h2V9z" fill="white" />
+                </svg>
+                <div class="skill-cooldown"></div>
+            </div>
+            <div class="skill" id="skill-2">
+                <svg class="skill-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7,2v11h3v9l7-12h-4l3-8H7z" fill="#4a95d1" />
+                    <path d="M9,4v7h3v5l3-6h-3l2-6H9z" fill="#87ceeb" />
+                </svg>
+                <div class="skill-cooldown"></div>
+            </div>
+            <div class="skill" id="skill-3">
+                <svg class="skill-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="9" fill="#ffd700" />
+                    <circle cx="12" cy="12" r="6" fill="#ffeb3b" />
+                    <path d="M12,3 L13,9 L19,9 L14,13 L16,19 L12,15 L8,19 L10,13 L5,9 L11,9 Z" fill="#ff9800" />
+                </svg>
+                <div class="skill-cooldown"></div>
+            </div>
+        </div>
+        
+        <!-- Shop and Upgrades Buttons -->
+        <div id="shop-button">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 18C5.9 18 5.01 18.9 5.01 20C5.01 21.1 5.9 22 7 22C8.1 22 9 21.1 9 20C9 18.9 8.1 18 7 18ZM17 18C15.9 18 15.01 18.9 15.01 20C15.01 21.1 15.9 22 17 22C18.1 22 19 21.1 19 20C19 18.9 18.1 18 17 18ZM7.17 14.75L7.2 14.63L8.1 13H15.55C16.3 13 16.96 12.59 17.3 11.97L21.16 4.96L19.42 4H19.41L18.31 6L15.55 11H8.53L8.4 10.73L6.16 6L5.21 4L4.27 2H1V4H3L6.6 11.59L5.25 14.04C5.09 14.32 5 14.65 5 15C5 16.1 5.9 17 7 17H19V15H7.42C7.29 15 7.17 14.89 7.17 14.75Z" fill="#333"/>
+            </svg>
+        </div>
+        <div id="upgrades-button">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1ZM19 11C19 15.5 16.2 19.69 12 20.93C7.8 19.69 5 15.5 5 11V6.3L12 3.19L19 6.3V11ZM7.37 13.5L10.5 16.5L16.63 10.5L15.24 9.13L10.5 13.75L8.76 12.12L7.37 13.5Z" fill="#333"/>
+            </svg>
+        </div>
+        <div id="prestige-shop-button">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4.5L5.5 20l2-7L2 9h7L12 2z" fill="#333"/>
+            </svg>
+        </div>
+        
+        <!-- Level Up Notification -->
+        <div id="level-up-notification">LEVEL UP!</div>
+        
+        <!-- Shop Modal -->
+        <div class="modal" id="shop-modal">
+            <div class="modal-content">
+                <div class="modal-close">&times;</div>
+                <h3 class="modal-title">SHOP</h3>
+                <div id="shop-items">
+                    <!-- Shop items will be populated here -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Upgrades Modal -->
+        <div class="modal" id="upgrades-modal">
+            <div class="modal-content">
+                <div class="modal-close">&times;</div>
+                <h3 class="modal-title">UPGRADES</h3>
+                <div id="upgrade-items">
+                    <!-- Upgrade items will be populated here -->
+                </div>
+
+                <h3 class="modal-title" style="margin-top:12px;">CHARACTERS</h3>
+                <div id="character-selection" class="character-container" aria-label="Character Selection">
+                    <!-- Character cards will be populated here -->
+                </div>
+
+                <h3 class="modal-title" style="margin-top: 20px;">INVENTORY</h3>
+                <div class="inventory-grid" id="inventory-grid">
+                    <!-- Inventory slots will be populated here -->
+                </div>
+                <div style="display:flex; gap:8px; align-items:center; margin-top:6px;">
+                    <button id="process-low-rarity" style="padding:8px 12px; border-radius:6px; background: linear-gradient(to bottom, #888, #555); color:white; border:none; cursor:pointer;">Blacksmith: Process Common/Uncommon</button>
+                    <div style="font-size:12px; opacity:0.8;">Converts to Influence. 500 Influence = 5m +1000% gold/tap</div>
+                </div>
+                
+                <div id="sell-by-rarity" style="margin-top:8px; display:flex; gap:8px; align-items:center;">
+                    <select id="sell-rarity-select" style="flex:1; padding:8px; border-radius:6px; border:1px solid #ccc;">
+                        <option value="Common">Common</option>
+                        <option value="Uncommon">Uncommon</option>
+                        <option value="Rare">Rare</option>
+                        <option value="Epic">Epic</option>
+                        <option value="Legendary">Legendary</option>
+                        <option value="Mythical">Mythical</option>
+                        <option value="All">Sell All</option>
+                    </select>
+                    <button id="sell-rarity-button" style="padding:8px 12px; border-radius:6px; background: linear-gradient(to bottom, var(--primary-blue), var(--dark-blue)); color:white; border:none; cursor:pointer;">Sell</button>
+                </div>
+
+                <h3 class="modal-title" style="margin-top: 20px;">CRAFTING</h3>
+                <div id="crafting-section">
+                    <!-- Crafting UI will be populated here -->
+                </div>
+                <h3 class="modal-title" style="margin-top: 20px;">COMMUNITY CHEST</h3>
+                <div id="community-chest-grid"></div>
+                <button id="deposit-first-selected" style="margin-top:8px; padding:8px 12px; border-radius:6px; background: linear-gradient(to bottom, #4caf50, #388e3c); color:white; border:none; cursor:pointer;">Deposit Selected</button>
+                <h3 class="modal-title" style="margin-top: 20px;">MARKETPLACE</h3>
+                <div id="marketplace-list"></div>
+                <div style="display:flex; gap:6px; margin-top:8px;">
+                    <input id="market-slot" type="number" min="0" placeholder="Inv slot #" style="flex:0 0 110px; padding:6px; border:1px solid #ccc; border-radius:6px;">
+                    <input id="market-price" type="number" min="1" placeholder="Price" style="flex:0 0 110px; padding:6px; border:1px solid #ccc; border-radius:6px;">
+                    <button id="market-list-btn" style="padding:8px 12px; border-radius:6px; background: linear-gradient(to bottom, var(--primary-blue), var(--dark-blue)); color:white; border:none; cursor:pointer;">List</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="prestige-shop-modal">
+            <div class="modal-content">
+                <div class="modal-close">&times;</div>
+                <h3 class="modal-title">PRESTIGE SHOP</h3>
+                <div style="text-align:center; margin-bottom:8px;">Prestige Points: <strong id="prestige-points" style="color:#000"></strong></div>
+                <div id="prestige-shop-items"></div>
+            </div>
+        </div>
+        
+        <!-- Settings Button -->
+        <div id="settings-button">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.43 12.98C19.47 12.67 19.5 12.34 19.5 12C19.5 11.66 19.47 11.33 19.43 11.02L21.54 9.37C21.73 9.22 21.78 8.95 21.66 8.73L19.66 5.27C19.54 5.05 19.27 4.96 19.05 5.05L16.56 6.05C16.04 5.66 15.48 5.31 14.87 5.07L14.49 2.42C14.46 2.18 14.25 2 14 2H10C9.75 2 9.54 2.18 9.51 2.42L9.13 5.07C8.52 5.31 7.96 5.66 7.44 6.05L4.95 5.05C4.73 4.96 4.46 5.05 4.34 5.27L2.34 8.73C2.21 8.95 2.27 9.22 2.46 9.37L4.57 11.02C4.53 11.33 4.5 11.66 4.5 12C4.5 12.34 4.53 12.67 4.57 12.98L2.46 14.63C2.27 14.78 2.21 15.05 2.34 15.27L4.34 18.73C4.46 18.95 4.73 19.04 4.95 18.95L7.44 17.94C7.96 18.34 8.52 18.69 9.13 18.93L9.51 21.58C9.54 21.82 9.75 22 10 22H14C14.25 22 14.46 21.82 14.49 21.58L14.87 18.93C15.48 18.69 16.04 18.34 16.56 17.94L19.05 18.95C19.27 19.04 19.54 18.95 19.66 18.73L21.66 15.27C21.78 15.05 21.73 14.78 21.54 14.63L19.43 12.98ZM12 15.5C10.07 15.5 8.5 13.93 8.5 12C8.5 10.07 10.07 8.5 12 8.5C13.93 8.5 15.5 10.07 15.5 12C15.5 13.93 13.93 15.5 12 15.5Z" fill="#333"/>
+            </svg>
+        </div>
+
+        <!-- Settings Modal -->
+        <div class="modal" id="settings-modal">
+            <div class="modal-content">
+                <div class="modal-close">&times;</div>
+                <h3 class="modal-title">SETTINGS</h3>
+                <div id="save-load-section">
+                    <h4>Save / Load Game</h4>
+                    <div class="save-slots">
+                        <div class="save-slot">
+                            <span>Slot 1</span>
+                            <button class="save-button" data-slot="1">Save</button>
+                            <button class="load-button" data-slot="1">Load</button>
+                        </div>
+                        <div class="save-slot">
+                            <span>Slot 2</span>
+                            <button class="save-button" data-slot="2">Save</button>
+                            <button class="load-button" data-slot="2">Load</button>
+                        </div>
+                        <div class="save-slot">
+                            <span>Slot 3</span>
+                            <button class="save-button" data-slot="3">Save</button>
+                            <button class="load-button" data-slot="3">Load</button>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top:12px;">
+                    <h4>Controls</h4>
+                    <label style="display:flex;gap:8px;align-items:center;">
+                        <input type="radio" name="controls-mode" value="keyboard" checked> Desktop (WASD)
+                    </label>
+                    <label style="display:flex;gap:8px;align-items:center;margin-top:6px;">
+                        <input type="radio" name="controls-mode" value="touch"> Mobile (Joystick)
+                    </label>
+                    <div style="font-size:12px; opacity:0.8; margin-top:6px;">Switch controls mode; joystick uses nipple.js (loaded on demand).</div>
+                </div>
+                <button id="prestige-button" style="margin-top:12px; padding:10px 14px; border:none; border-radius:8px; background: linear-gradient(to bottom, #ff9800, #f57c00); color:white; font-weight:bold; cursor:pointer;">Prestige (requires Lv 100)</button>
+            </div>
+        </div>
+
+        <!-- Audio Controls -->
+        <div id="audio-controls" aria-label="Audio Controls">
+            <button id="audio-toggle" title="Play/Pause">▶️</button>
+            <input id="audio-volume" type="range" min="0" max="1" step="0.01" value="0.5" aria-label="Volume">
+            <button id="audio-mute" title="Mute/Unmute">🔇</button>
+        </div>
+
+        <!-- Item Tooltip -->
+        <div id="item-tooltip"></div>
+
+        <!-- Toast Notification Container -->
+        <div id="toast-container"></div>
+
+    </div>
+
+    <!-- Import the main JS file which will handle other imports -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
